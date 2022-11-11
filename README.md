@@ -18,7 +18,7 @@
 
 ## Description
 
-**Simple_shell** is a simple command line interpreter based on the first Unix shell 'sh', created by Ken Thompson in 1971. **hella_shell** is intentionally minimalistic and contains functionality for only the most basic shell tasks - accepting input, parsing the input into a command and its arguments, and executing that input. Error checking is simple and follows Bash conventions.
+**Simple_shell** Write a Simple UNIX command interpreter
 
 ## Purpose
 
@@ -66,15 +66,43 @@ The purpose of the simple shell project is to understand:
 * [number_helpers.c](number_helpers.c) - helper functions pertaining to integers
   * `_atoi` - turns a numerical string into an integer
   * `print_number` - prints an integer to standard output
-* [parse_input.c](parse_input.c) - command and argument parsing function
-* [shell.c](shell.c) - main function
+* [parse.c](parse.c) - command and argument parsing function
+  * `is_cmd` - determines if a file is an executable command
+  * `dup_chars` - duplicates characters
+  * `find_path` - finds this cmd in the PATH string
+* [realloc.c](realloc.c) - Memory allocation
+  * `*_memset` - fills memory with a constant byte
+  * `ffree` - frees a string of strings
+  * `_realloc` - reallocates a block of memory
 * [shell.h](shell.h) - header file
-* [string_helpers.c](string_helpers.c) - helper functions pertaining to string handling
+* [shell_loop.c](shell_loop.c) - shell loop
+  * `hsh` - main shell loop
+  * `find_builtin` - finds a builtin command
+  * `find_cmd` - finds a command in PATH
+  * `fork_cmd ` - forks a an exec thread to run cmd
+* [string1.c](string1.c) - helper functions pertaining to string handling
   * `_strlen` - finds length of a string
   * `_strcmp` - compares two strings
   * `_strdup` - duplicates two strings (including memory management)
+  * `_puts` - prints an input string
   * `_putchar` - writes a single character to standard output
-
+* [tokenizer.c](tokenizer.c) - word splitting function helpers
+  * `*strtow` - splits a string into words. Repeat delimiters are ignored
+  * `**strtow2` - splits a string into words
+* [list.c](list.c) - list functions for strings and nodes
+  * `list_len` - determines length of linked list
+  * `list_to_strings` - returns an array of strings of the list->str
+  * `print_list` - prints all elements of a list_t linked list
+  * `node_starts_with` - returns node whose string starts with prefix
+  * `get_node_index` - gets the index of a node
+* [main.c](main.c) - Main function
+* [memory.c](memory.c) - frees a pointer and NULLs the address
+* [vars.c](vars.c) - vars helpers
+  * `is_chain ` - test if current char in buffer is a chain delimeter
+  * `check_chain` - checks we should continue chaining based on last status
+  * `replace_alias` - replaces an aliases in the tokenized string
+  * `replace_vars` - replaces vars in the tokenized string
+  * `replace_string` - replaces string
 ## Compilation
 
 ```gcc -Wall -Wextra -Werror -pedantic *.c -o hsh```
